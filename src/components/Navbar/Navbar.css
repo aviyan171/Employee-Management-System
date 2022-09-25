@@ -1,0 +1,17 @@
+.navbar {
+    /* border: 1px solid red; */
+    padding: 0.5rem;
+    background-color: wheat;
+}
+
+.lists {
+    text-decoration: none;
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    padding-left: 1rem;
+}
+
+.List-container {
+    gap: 1.5rem;
+    display: flex;
+}

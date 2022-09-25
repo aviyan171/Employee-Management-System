@@ -1,0 +1,59 @@
+
+
+.Login-Form{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid black; */
+    margin: 3rem ;
+    
+   
+}
+
+.login-field{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    border: 1px solid black;
+    height: 250px;
+    width: 250px;
+    background-color: lightblue;
+    border: 1px solid lightgray;
+    
+}
+
+.Input-tag{
+    /* height: 100px; */
+    width: 200px;
+    height: 30px;
+    border: 1px solid lightgrey;
+}
+
+.btn{
+    padding: 5px;
+    width: 200px;
+    height: 30px;
+    cursor: pointer;
+    border: 1px solid lightgrey;
+    transition: all 1s;
+    background-color: green;
+    color: white;
+    
+}
+
+.btn:hover{
+    color:white;
+    background-color: blue;
+}
+
+.text{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 1rem;
+    /* font-style: italic;
+    color:; */
+}
