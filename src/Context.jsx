@@ -52,6 +52,7 @@ export const Appprovider = ({ children }) => {
     Name: "",
     Email: "",
     Department: "",
+    Gender: "",
   });
 
   const localStorageData = () => {
@@ -75,19 +76,26 @@ export const Appprovider = ({ children }) => {
           return item;
         })
       );
-      setDetails({ Name: "", Email: "", Department: "" });
+      setDetails({ Name: "", Email: "", Department: "", Gender: "" });
       setAdd(false);
       setToggle(true);
       editNotify();
       // setAdd(true);
-    } else if (details.Name && details.Email && details.Department) {
+    } else if (
+      details.Name &&
+      details.Email &&
+      details.Department &&
+      details.Gender
+    ) {
       const newData = { ...details, id: new Date().getTime().toString() };
       setPeople([...people, newData]);
       addNotify();
-      setDetails({ Name: "", Email: "", Department: "" });
+      setDetails({ Name: "", Email: "", Department: "", Gender: "" });
       setAdd(false);
     }
   };
+
+  const [login, isLogin] = useState(false);
   return (
     <Appcontext.Provider
       value={{
@@ -116,6 +124,8 @@ export const Appprovider = ({ children }) => {
         setAdd,
         toggle,
         setToggle,
+        login,
+        isLogin,
       }}
     >
       {children}

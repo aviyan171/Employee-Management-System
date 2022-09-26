@@ -46,6 +46,14 @@ const Add = ({
             name="Department"
             onChange={handleonChange}
           />
+          <input
+            className="Add-Items"
+            type="text"
+            placeholder="Gender"
+            value={details.Gender}
+            name="Gender"
+            onChange={handleonChange}
+          />
           {
             <button type="submit" className="submit" onClick={handleSubmit}>
               {toggle ? "Add" : "Edit"}

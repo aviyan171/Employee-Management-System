@@ -4,8 +4,11 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Employee from "./components/Employee/Employee";
 import Navbar from "./components/Navbar/Navbar";
 import { useEffect } from "react";
+import { useData } from "./Context";
 
 function App() {
+
+  const {login}=useData()
 
     let localItem = localStorage.getItem('User-details');
   useEffect(() => {

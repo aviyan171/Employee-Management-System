@@ -65,6 +65,7 @@ const Employee = () => {
       Department: EditItem.Department,
       Name: EditItem.Name,
       Email: EditItem.Email,
+      Gender: EditItem.Gender,
     });
     setAdd(true);
     setEditItem(id);
@@ -118,6 +119,7 @@ const Employee = () => {
               </th>
               <th>Email</th>
               <th>Department</th>
+              <th>Gender</th>
               <th>Action</th>
             </tr>
             {SearchedUsers.map((item) => {
@@ -127,6 +129,7 @@ const Employee = () => {
                     <td>{item.Name}</td>
                     <td>{item.Email}</td>
                     <td>{item.Department}</td>
+                    <td>{item.Gender}</td>
                     <td className="btn-tble">
                       <button
                         className="btn-item delete"

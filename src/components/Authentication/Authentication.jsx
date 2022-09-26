@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Authentication.css";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../Context";
@@ -18,6 +18,8 @@ const Authentication = () => {
     validEmailError,
     passwordLengthError,
     specialCharacter,
+    login,
+    isLogin,
   } = useData();
 
   const navigate = useNavigate();
@@ -52,12 +54,18 @@ const Authentication = () => {
       setLoginDetails([...LoginDetails, loginField]);
       setEmail("");
       setPassword("");
+
+      localStorage.setItem("logindetails", JSON.stringify(loginField));
+      isLogin(true);
+      console.log(login);
+
       navigate("/dashboard");
     }
   };
 
   return (
     <div className="Login-Form ">
+      <h1>Employee Management System</h1>
       <div className="login-field">
         <p className="text">Login to Employee Management System</p>
         <input
