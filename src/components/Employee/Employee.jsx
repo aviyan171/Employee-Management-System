@@ -2,24 +2,43 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import Add from "./Add";
 import "./Employee.css";
+import { useData } from "../../Context";
+import { ToastContainer } from "react-toastify";
 
 const Employee = () => {
-  const localStorageData = () => {
-    const localdata = localStorage.getItem("User-details");
-    return JSON.parse(localdata);
-  };
+  const {
+    deleteNotify,
+    handleSubmit,
+    details,
+    setDetails,
+    people,
+    setPeople,
+    setEditItem,
+    showAdd,
+    setAdd,
+    toggle,
+    setToggle,
+  } = useData();
 
-  const [details, setDetails] = useState({
-    Name: "",
-    Email: "",
-    Department: "",
-  });
-
-  const [people, setPeople] = useState(localStorageData || []);
-  const [showAdd, setAdd] = useState(false);
-  const [Edit, setEditItem] = useState(null);
-  const [toggle, setToggle] = useState(true);
   const [query, setQuery] = useState("");
+  const [order, setorder] = useState("ASC");
+
+  const sorting = (col) => {
+    if (order === "ASC") {
+      const sorted = [...people].sort((a, b) =>
+        a[col].toLowerCase() > b[col].toLowerCase() ? 1 : -1
+      );
+      setPeople(sorted);
+      setorder("DSC");
+    }
+    if (order === "DSC") {
+      const sorted = [...people].sort((a, b) =>
+        a[col].toLowerCase() < b[col].toLowerCase() ? 1 : -1
+      );
+      setPeople(sorted);
+      setorder("ASC");
+    }
+  };
 
   const handleonChange = (e) => {
     const name = e.target.name;
@@ -32,31 +51,14 @@ const Employee = () => {
     setAdd(!showAdd);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!toggle && details) {
-      setPeople(
-        people.map((item) => {
-          if (item.id === Edit) {
-            console.log({ ...item, details });
-          }
-          return item;
-        })
-      );
-      setAdd(false);
-    } else if (details.Name && details.Email && details.Department) {
-      const newData = { ...details, id: new Date().getTime().toString() };
-      setPeople([...people, newData]);
-      setDetails({ Name: "", Email: "", Department: "" });
-      setAdd(false);
-    }
-  };
-
+  //delete-Items
   const handleDelete = (id) => {
     const filteredItem = people.filter((item) => item.id !== id);
     setPeople(filteredItem);
+    deleteNotify();
   };
 
+  //Edit-Items
   const handleEdit = (id) => {
     const EditItem = people.find((item) => item.id === id);
     setDetails({
@@ -77,9 +79,12 @@ const Employee = () => {
     setQuery(e.target.value);
   };
 
+  //search-Item
   const SearchedUsers = people.filter((user) =>
     user.Name.toLowerCase().includes(`${query}`)
   );
+
+  console.log();
 
   return (
     <div>
@@ -108,7 +113,9 @@ const Employee = () => {
         <table>
           <tbody>
             <tr>
-              <th>Name</th>
+              <th onClick={() => sorting("Name")} style={{ cursor: "pointer" }}>
+                Name
+              </th>
               <th>Email</th>
               <th>Department</th>
               <th>Action</th>
@@ -143,6 +150,7 @@ const Employee = () => {
       ) : (
         " "
       )}
+      <ToastContainer />
     </div>
   );
 };

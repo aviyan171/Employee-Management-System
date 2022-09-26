@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Add = ({
   details,
@@ -50,6 +51,17 @@ const Add = ({
               {toggle ? "Add" : "Edit"}
             </button>
           }
+          <button className="submit" style={{ backgroundColor: "red" }}>
+            <Link
+              to="/home"
+              style={{
+                textDecoration: "none",
+                color: "white",
+              }}
+            >
+              Cancel
+            </Link>
+          </button>
         </form>
       ) : (
         " "

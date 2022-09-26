@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Authentication.css";
 import { useNavigate } from "react-router-dom";
 import { useData } from "../../Context";
+import { ToastContainer } from "react-toastify";
 
 const Authentication = () => {
   const {
@@ -11,6 +12,12 @@ const Authentication = () => {
     setEmail,
     setPassword,
     setLoginDetails,
+    error,
+    Passworderror,
+    EmptyEmailerror,
+    validEmailError,
+    passwordLengthError,
+    specialCharacter,
   } = useData();
 
   const navigate = useNavigate();
@@ -30,29 +37,27 @@ const Authentication = () => {
     const regaxforonespecialcharacter =
       /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/;
     if (loginField.Email === "" && loginField.Password === "") {
-      alert("Email and passoword fields cannot be empty");
+      error();
     } else if (loginField.Password === "") {
-      alert("Please Insert Password");
+      Passworderror();
     } else if (loginField.Email === "") {
-      alert("Email cannot be empty");
+      EmptyEmailerror();
     } else if (!regexforemail.test(loginField.Email)) {
-      alert("Please Insert Valid Email");
+      validEmailError();
     } else if (loginField.Password.length < 8) {
-      alert("Password must be of 8 characters");
+      passwordLengthError();
     } else if (!regaxforonespecialcharacter.test(loginField.Password)) {
-      alert("You must have atleast 1 special characters and 1 uppercase");
+      specialCharacter();
     } else {
       setLoginDetails([...LoginDetails, loginField]);
       setEmail("");
       setPassword("");
-      alert("Login Success Redirecting to Home Page");
       navigate("/dashboard");
     }
   };
 
   return (
     <div className="Login-Form ">
-      <h3>Welcome to Employee Management System</h3>
       <div className="login-field">
         <p className="text">Login to Employee Management System</p>
         <input
@@ -72,6 +77,7 @@ const Authentication = () => {
         <button onClick={handleLogin} className="btn">
           Log in
         </button>
+        <ToastContainer />
       </div>
     </div>
   );
