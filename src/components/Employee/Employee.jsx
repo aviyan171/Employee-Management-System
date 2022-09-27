@@ -4,6 +4,8 @@ import Add from "./Add";
 import "./Employee.css";
 import { useData } from "../../Context";
 import { ToastContainer } from "react-toastify";
+import { AiOutlineSortDescending } from "react-icons/ai";
+import { BsSortAlphaUpAlt } from "react-icons/bs";
 
 const Employee = () => {
   const {
@@ -114,7 +116,18 @@ const Employee = () => {
         <table>
           <tbody>
             <tr>
-              <th onClick={() => sorting("Name")} style={{ cursor: "pointer" }}>
+              <th>
+                {order === "DSC" ? (
+                  <AiOutlineSortDescending
+                    onClick={() => sorting("Name")}
+                    style={{ cursor: "pointer" }}
+                  />
+                ) : (
+                  <BsSortAlphaUpAlt
+                    onClick={() => sorting("Name")}
+                    style={{ cursor: "pointer" }}
+                  />
+                )}{" "}
                 Name
               </th>
               <th>Email</th>

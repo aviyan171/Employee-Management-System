@@ -24,6 +24,8 @@ const Authentication = () => {
 
   const navigate = useNavigate();
 
+  const [password, showPassword] = useState(true);
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -54,7 +56,6 @@ const Authentication = () => {
       setLoginDetails([...LoginDetails, loginField]);
       setEmail("");
       setPassword("");
-
       localStorage.setItem("logindetails", JSON.stringify(loginField));
       isLogin(true);
       console.log(login);
@@ -77,11 +78,14 @@ const Authentication = () => {
         />
         <input
           className="Input-tag"
-          type="password"
+          type={password ? "password" : "text"}
           value={Password}
           onChange={handlePasswordChange}
           placeholder="Your password"
         />
+        <button className="btn" onClick={() => showPassword(!password)}>
+          Show Password
+        </button>
         <button onClick={handleLogin} className="btn">
           Log in
         </button>
