@@ -1,19 +1,14 @@
-import React, { useEffect } from "react";
-import { json, Link, Navigate, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link, Navigate } from "react-router-dom";
 import "./Navbar.css";
 import { GrLogout } from "react-icons/gr";
-const Navbar = ({ isAuth, setAuth }) => {
-  // const navigate = useNavigate();
-
+const Navbar = ({ setAuth }) => {
+  //Logout
   const handlelogout = () => {
     localStorage.removeItem("logindetails");
     setAuth(false);
     <Navigate replace to="/" />;
   };
-
-  // useEffect(() => {
-  //   handlelogout();
-  // }, [loggedout]);
 
   return (
     <div className="navbar">

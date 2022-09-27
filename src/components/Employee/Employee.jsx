@@ -91,15 +91,19 @@ const Employee = () => {
 
   return (
     <div>
-      <div className="search-container">
-        <input
-          className="search-array"
-          type="text"
-          placeholder={`search`}
-          value={query}
-          onChange={handleQuery}
-        />
-      </div>
+      {!showAdd ? (
+        <div className="search-container">
+          <input
+            className="search-array"
+            type="text"
+            placeholder={`search`}
+            value={query}
+            onChange={handleQuery}
+          />
+        </div>
+      ) : (
+        ""
+      )}
       <Add
         details={details}
         setDetails={setDetails}
@@ -117,13 +121,13 @@ const Employee = () => {
           <tbody>
             <tr>
               <th>
-                {order === "DSC" ? (
-                  <AiOutlineSortDescending
+                {order === "ASC" ? (
+                  <BsSortAlphaUpAlt
                     onClick={() => sorting("Name")}
                     style={{ cursor: "pointer" }}
                   />
                 ) : (
-                  <BsSortAlphaUpAlt
+                  <AiOutlineSortDescending
                     onClick={() => sorting("Name")}
                     style={{ cursor: "pointer" }}
                   />

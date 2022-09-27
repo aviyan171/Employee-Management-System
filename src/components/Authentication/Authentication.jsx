@@ -83,12 +83,17 @@ const Authentication = () => {
           onChange={handlePasswordChange}
           placeholder="Your password"
         />
-        <button className="btn" onClick={() => showPassword(!password)}>
-          Show Password
-        </button>
         <button onClick={handleLogin} className="btn">
           Log in
         </button>
+        <label htmlFor="showpassword">Show Password</label>
+        <input
+          className="checkbox"
+          type="checkbox"
+          name="showpassword"
+          id="showpassword"
+          onClick={() => showPassword(!password)}
+        />
         <ToastContainer />
       </div>
     </div>
